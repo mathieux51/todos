@@ -1,0 +1,10 @@
+alias q="mate ~/.zshrc"
+alias oq="mate ~/.oh-my-zsh"
+
+alias s="git status -sb"
+alias l="git log --reverse"
+alias b="git branch -vv"
+# alias lt="git log --reverse | cat && echo"
+
+alias d="git diff"
+alias ds="git diff --staged"

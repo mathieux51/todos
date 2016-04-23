@@ -1,0 +1,32 @@
+[alias]
+  tree = log --graph --all
+  lg = log --reverse
+[format]
+  pretty = "format:%C(red)%h%C(reset) - %s %C(blue)(%cr)%Creset %C(green)%an%C(reset) %C(yellow)%d%C(reset)"
+[user]
+	name = ...
+	email = ...
+[core]
+  editor = mate -w
+  # editor = atom -w
+  # editor = subl -w
+	pager = cat && echo
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+	tool = Kaleidoscope
+[difftool]
+	prompt = false
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
