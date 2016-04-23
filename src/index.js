@@ -1,11 +1,10 @@
-import {createServer} from 'http';
 import express from 'express';
 
 const todos = [
   "Save Dr. Poopy Butthole.",
   "Get Blowjob.",
   "Confirm spelling of Dr. Poopy Butthole."
-]
+];
 
 var app = express(); 
 app.get('*', function(req, res) {
@@ -13,4 +12,6 @@ app.get('*', function(req, res) {
   res.send(todos);
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("Listening on port 3000.");
+});
