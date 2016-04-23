@@ -1,4 +1,5 @@
 import express from 'express';
+import nunjucks from 'nunjucks';
 
 const todos = [
   "Save Dr. Poopy Butthole.",
@@ -6,8 +7,17 @@ const todos = [
   "Confirm spelling of Dr. Poopy Butthole."
 ];
 
-var app = express(); 
-app.get('*', function(req, res) {
+var app = express();
+
+app.use(express.static('public'));
+
+nunjucks.configure('views', {autoescape: true});
+app.get('/todos', function(req, res) {
+  res.set('Content-Type', 'text/html');
+  res.send(nunjucks.render('todos.html', todos));
+});
+
+app.get('/todos.json', function(req, res) {
   res.set('Content-Type', 'text/plain');
   res.send(todos);
 });
