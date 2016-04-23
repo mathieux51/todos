@@ -1,0 +1,14 @@
+body {
+  font-family: Lato;
+  color: #777; }
+
+ul {
+  width: 30%;
+  padding-left: 0px;
+  border: 1px solid #ddd;
+  border-radius: 8px; }
+  ul li {
+    padding: 10px;
+    list-style-type: none;
+    display: block;
+    border-bottom: 1px solid #ddd; }
