@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 import express from 'express';
 import nunjucks from 'nunjucks';
 
@@ -28,11 +30,21 @@ gulp.task('watch', () => {
 });
 gulp.start('watch');
 
-const todos = [
-  "Save Dr. Poopy Butthole.",
-  "Get Blowjob.",
-  "Confirm spelling of Dr. Poopy Butthole."
-];
+
+const jsonDb = fs.readFileSync('./server/db.json');
+
+// const jsonDb = '{"todos":["!!!Save Dr. Poopy Butthole.", "Get Blowjob.", "Confirm spelling of Dr. Poopy Butthole."]}'
+
+const db = JSON.parse(jsonDb);
+
+// const db = {
+//   todos: [
+//     "Save Dr. Poopy Butthole.",
+//     "Get Blowjob.",
+//     "Confirm spelling of Dr. Poopy Butthole."
+//   ]
+// };
+
 
 var app = express();
 
@@ -45,13 +57,13 @@ nunjucks.configure('server/views', {
 app.get('/todos', function(req, res) {
   console.log(req.query);
   todos.push(req.query.todo);
-  res.render('todos.html', {todos: todos});
+  res.render('todos.html', db);
 });
 
 
 app.get('/todos.json', function(req, res) {
   res.set('Content-Type', 'text/plain');
-  res.send(todos);
+  res.send({todos: db.todos});
 });
 
 app.listen(3000, () => {
