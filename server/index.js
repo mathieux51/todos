@@ -43,6 +43,7 @@ const app = express()
 app.use(morgan('dev'))
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(require('connect-livereload')());
 
 nunjucks.configure('server/views', {
   autoescape: true,
