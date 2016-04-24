@@ -49,9 +49,8 @@ app.get('/todos', function(req, res) {
   res.render('todos.html', db());
 });
 
-
 app.get('/todos.json', function(req, res) {
-  res.set('Content-Type', 'text/plain');
+  res.setHeader('Content-Type', 'application/json');
   res.send({todos: db().todos});
 });
 
