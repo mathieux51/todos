@@ -41,9 +41,9 @@ const db = new Db('./server/db.json')
 // Server App
 const app = express()
 app.use(morgan('dev'))
+app.use(require('connect-livereload')());
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(require('connect-livereload')());
 
 nunjucks.configure('server/views', {
   autoescape: true,

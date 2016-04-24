@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-export default class Database {
+export default class {
   constructor(file) {
     this.file = file
     if(fs.existsSync(this.file)) {
