@@ -31,9 +31,8 @@ gulp.task('watch', () => {
   gulp.watch(['client/**/*.html'], ['html'])
   gulp.watch(['client/**/*.scss'], ['sass'])
   gulp.watch(['client/**/*.js'], ['js'])
+  gulp.watch(['server/views/*.html'], _ => livereload.reload())
 })
 
-gulp.on('task_start', (e) => {
-  gutil.log(`Starting ${chalk.cyan(e.task)}...`)
-})
+gulp.on('task_start', event => gutil.log(`Starting ${chalk.cyan(event.task)}...`))
 gulp.start('watch')

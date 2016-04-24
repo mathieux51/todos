@@ -21,7 +21,8 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 nunjucks.configure('server/views', {
   autoescape: true,
-  express: app
+  express: app,
+  noCache: true
 })
 
 // Web Application (Server Side)
@@ -41,5 +42,4 @@ app.get('/todos.json', function(req, res) {
 
 app.listen(3000, () => {
   console.log("Listening on port 3000")
-  // livereload.reload()
 })
