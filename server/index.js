@@ -5,37 +5,11 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import nunjucks from 'nunjucks'
 
-import gulp from 'gulp'
-import gutil from 'gulp-util'
-import chalk from 'chalk'
-import sass from 'gulp-sass'
-import livereload from 'gulp-livereload'
-
-// Gulp
-function onError(err) {
-  console.log(err.message)
-  this.emit('end')
-}
-gulp.task('sass', () => {
-  gulp.src(['./client/**/*.scss', '!./client/**/_*.scss'])
-  .pipe(sass())
-    .on('error', onError)
-  .pipe(gulp.dest('./public'))
-  .pipe(livereload())
-})
-gulp.task('watch', () => {
-  livereload.listen()
-  livereload.reload()
-  gulp.watch(['./client/**/*.scss', './client/**/_*.scss'], ['sass'])
-})
-
-gulp.on('task_start', (e) => {
-  gutil.log(`Starting ${chalk.cyan(e.task)}...`)
-})
-gulp.start('watch')
-
+import './gulp'
 import Db from './db'
-const db = new Db('./server/db.json')
+
+// Database
+const db = new Db('db.json')
 // db.drop('todos')
 
 // Server App

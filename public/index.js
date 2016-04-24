@@ -1,1 +1,3 @@
-console.log("Hello from Javascript!");
+"use strict";
+
+console.log([1, 2, 3].concat([2]));
