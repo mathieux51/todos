@@ -43,8 +43,11 @@ nunjucks.configure('server/views', {
   express: app
 });
 app.get('/todos', function(req, res) {
+  console.log(req.query);
+  todos.push(req.query.todo);
   res.render('todos.html', {todos: todos});
 });
+
 
 app.get('/todos.json', function(req, res) {
   res.set('Content-Type', 'text/plain');
