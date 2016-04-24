@@ -31,9 +31,20 @@ gulp.task('watch', () => {
 });
 gulp.start('watch');
 
+
 function db() {
   const json = fs.readFileSync('./server/db.json', 'utf8');
   return JSON.parse(json);
+}
+function getTodos() {
+  return {todos: db().todos};
+}
+function addTodo(todo) {
+  const _db = db();
+  _db.todos.push(todo);
+  
+  const json = JSON.stringify(_db);
+  fs.writeFileSync('./server/db.json', json, 'utf8');
 }
 
 var app = express();
@@ -45,24 +56,25 @@ nunjucks.configure('server/views', {
   express: app
 });
 app.get('/todos', function(req, res) {
-  res.render('todos.html', db());
+  res.render('todos.html', getTodos());
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
-/*app.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/plain')
-  res.write('you posted:\n')
-  res.end(JSON.stringify(req.body, null, 2))
-});*/
+// app.use(function (req, res) {
+//   res.setHeader('Content-Type', 'text/plain')
+//   res.write('you posted:\n')
+//   res.end(JSON.stringify(req.body, null, 2))
+// });
 app.post('/todos', function(req, res) {
-  res.render('todos.html', db());
+  addTodo(req.body.todo);
+  res.render('todos.html', getTodos());
 });
 
  
 
 app.get('/todos.json', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
-  res.send({todos: db().todos});
+  res.send({todos: getTodos().todos});
 });
 
 app.listen(3000, () => {
