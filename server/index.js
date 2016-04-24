@@ -23,6 +23,7 @@ gulp.task('sass', () => {
 });
 gulp.task('watch', () => {
   livereload.listen();
+  livereload.reload();
   gulp.watch(['./client/**/*.scss', './client/**/_*.scss'], ['sass']);
 });
 gulp.start('watch');
@@ -35,7 +36,7 @@ const todos = [
 
 var app = express();
 
-app.use(express.static('public'));
+app.use('/', express.static('public'));
 
 nunjucks.configure('server/views', {
   autoescape: true,
