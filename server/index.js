@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import express from 'express';
+import bodyParser from 'body-parser';
 import nunjucks from 'nunjucks';
 
 import gulp from 'gulp';
@@ -44,10 +45,20 @@ nunjucks.configure('server/views', {
   express: app
 });
 app.get('/todos', function(req, res) {
-  console.log(req.query);
-  todos.push(req.query.todo);
   res.render('todos.html', db());
 });
+
+app.use(bodyParser.urlencoded({ extended: false }));
+/*app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/plain')
+  res.write('you posted:\n')
+  res.end(JSON.stringify(req.body, null, 2))
+});*/
+app.post('/todos', function(req, res) {
+  res.render('todos.html', db());
+});
+
+ 
 
 app.get('/todos.json', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
