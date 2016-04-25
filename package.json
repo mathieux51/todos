@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node server/index.js -w server -e js",
+    "dev": "nodemon --exec babel-node server/index.js -w db.json -w server -e js",
     "prestart": "babel server --out-dir dist",
     "start": "node dist/index.js"
   },

@@ -36,3 +36,7 @@ gulp.task('watch', () => {
 
 gulp.on('task_start', event => gutil.log(`Starting ${chalk.cyan(event.task)}...`))
 gulp.start('watch')
+
+export function reload() {
+  livereload.reload()
+}

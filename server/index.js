@@ -5,7 +5,7 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import nunjucks from 'nunjucks'
 
-import './gulp'
+import {reload} from './gulp'
 import Db from './db'
 
 // Database
@@ -42,4 +42,5 @@ app.get('/todos.json', function(req, res) {
 
 app.listen(3000, () => {
   console.log("Listening on port 3000")
+  setTimeout(reload, 2000)
 })
