@@ -5,13 +5,21 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import nunjucks from 'nunjucks'
 
-import {reload} from './gulp'
+import webpack from 'webpack'
+import config from '../webpack.config'
+var compiler = webpack(config);
+
+import {reload, close} from './gulp'
 
 import Db from './db'
 const db = new Db('db.json')
 
 // Configure Express
-const app = express()
+var app = express()
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
 app.use(morgan('dev'))
 app.use(require('connect-livereload')());
 app.use(express.static('public'))
@@ -38,7 +46,22 @@ app.get('/todos.json', function(req, res) {
 })
 
 // Bootup Server
-app.listen(3000, () => {
+var server = app.listen(3000, () => {
   console.log("Listening on port 3000")
-  setTimeout(reload, 2000)
+  setTimeout(reload, 4000)
 })
+
+// Handle shutdown from nodemon
+process.once('SIGUSR2', function () {
+  console.log("Writing database...")
+  close()
+  server.close()
+  db.write()
+  process.exit()
+});
+// Handle shutdown from ctrl-c
+process.on('SIGINT', function() {
+  console.log("Writing database...")
+  db.write()
+  process.exit()
+});

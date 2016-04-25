@@ -1,19 +1,30 @@
 @import 'font';
 
 $radius: 5px;
+$fg-color: #F9D034;
+$bg-color: #222;
+$bg-color-focus: #555;
 
 body {
   color: #777;
-  color: orange;
-  background: black;
+  color: $fg-color;
+  background: $bg-color;
   margin: 0 auto;
   width: 60%;
 }
 
+h1 {
+  text-align: center;
+  color: white;
+  background: #1370A3;
+  border-radius: $radius;
+}
+
 ul {
   padding-left: 0px;
-  border: 3px solid orange;
   border-radius: $radius;
+  background: $fg-color;
+  color: $bg-color;
   li {
     padding: 10px;
     list-style-type: none;
@@ -21,20 +32,20 @@ ul {
   }
 
   li + li {
-    border-top: 1px solid orange;
+    border-top: 1px solid $bg-color;
   }
 }
 
 input {
-  border: 3px solid orange;  
+  border: 3px solid $fg-color;  
   border-radius: $radius;
-  background: black;
-  color: orange;
+  background: $bg-color;
+  color: $fg-color;
   font-size: 16px;
   line-height: 22px;
   padding: 8px;
   &:focus {
-    background: #555;
+    background: $bg-color-focus;
     outline: none;
   };
   &[type=text] {

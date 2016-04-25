@@ -1,3 +1,3 @@
 "use strict";
 
-console.log([1, 2, 3].concat([2]));
+console.log("Hello from webpack...!!!");

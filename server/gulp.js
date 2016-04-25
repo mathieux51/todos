@@ -40,3 +40,6 @@ gulp.start('watch')
 export function reload() {
   livereload.reload()
 }
+export function close() {
+  livereload.server.close()
+}
