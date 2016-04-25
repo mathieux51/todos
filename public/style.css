@@ -12,5 +12,6 @@ ul {
   ul li {
     padding: 10px;
     list-style-type: none;
-    display: block;
-    border-bottom: 1px solid orange; }
+    display: block; }
+  ul li + li {
+    border-top: 1px solid orange; }
