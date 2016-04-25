@@ -39,7 +39,7 @@ export default new class {
   }
   write() {
     if(this.options.file === undefined) throw "No File Specified"
-    const json = JSON.stringify(this.data)
+    const json = JSON.stringify(this.data, null, '  ')
     fs.writeFileSync(this.options.file, json, 'utf8')
   }
 }
