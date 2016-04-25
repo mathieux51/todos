@@ -9,7 +9,7 @@ import {Server as WebSocketServer} from 'ws'
 
 import webpack from 'webpack'
 import config from '../webpack.config'
-var compiler = webpack(config);
+var compiler = webpack(config)
 
 import {reload, close} from './gulp'
 
@@ -52,13 +52,15 @@ var server = app.listen(3000, () => {
   console.log("Listening on port 3000")
   setTimeout(reload, 3000)
 })
+
+// Bootup WebSocketServer (Link it to Http Server)
 const wss = new WebSocketServer({ server: server })
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
+    console.log('received: %s', message)
+  })
   ws.send('something');
-});
+})
 
 // Handle shutdown from nodemon
 process.once('SIGUSR2', function () {
@@ -67,11 +69,11 @@ process.once('SIGUSR2', function () {
   server.close()
   db.write()
   process.exit()
-});
+})
 
 // Handle shutdown from ctrl-c
 process.on('SIGINT', function() {
   console.log("Writing database...")
   db.write()
   process.exit()
-}); 
+})
