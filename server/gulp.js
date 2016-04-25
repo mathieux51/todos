@@ -5,6 +5,8 @@ import sass from 'gulp-sass'
 import babel from 'gulp-babel'
 import livereload from 'gulp-livereload'
 
+import db from './db'
+
 function onError(err) {
   console.log(err.message)
   this.emit('end')
@@ -32,6 +34,10 @@ gulp.task('watch', () => {
   gulp.watch(['client/**/*.scss'], ['sass'])
   gulp.watch(['client/**/*.js'], ['js'])
   gulp.watch(['server/views/*.html'], _ => livereload.reload())
+  gulp.watch(['db.json'], () => {
+    db.read()
+    livereload.reload()
+  })
 })
 
 gulp.on('task_start', event => gutil.log(`Starting ${chalk.cyan(event.task)}...`))

@@ -11,8 +11,8 @@ var compiler = webpack(config);
 
 import {reload, close} from './gulp'
 
-import Db from './db'
-const db = new Db('db.json')
+import db from './db'
+db.connect({file: 'db.json'})
 
 // Configure Express
 var app = express()
@@ -48,7 +48,7 @@ app.get('/todos.json', function(req, res) {
 // Bootup Server
 var server = app.listen(3000, () => {
   console.log("Listening on port 3000")
-  setTimeout(reload, 4000)
+  setTimeout(reload, 3000)
 })
 
 // Handle shutdown from nodemon
@@ -59,9 +59,10 @@ process.once('SIGUSR2', function () {
   db.write()
   process.exit()
 });
+
 // Handle shutdown from ctrl-c
 process.on('SIGINT', function() {
   console.log("Writing database...")
   db.write()
   process.exit()
-});
+}); 

@@ -1,16 +1,20 @@
 import fs from 'fs'
 
-export default class {
-  constructor(file, options = {}) {
+export default new class {
+  constructor() {
     this.options = {
-      writeOnChange: false,
-      ...options
+      writeOnChange: false
     }
     this.data = {}
-
-    this.file = file
+  }
+  connect(options) {
+    this.options = {
+      ...this.options,
+      ...options
+    }
     this.read()
   }
+  get file() { return this.options.file }  
   all(table) {
     return this.data[table]
   }
@@ -26,13 +30,16 @@ export default class {
       this.write()
   }
   read() {
-    if(fs.existsSync(this.file)) {
-      const json = fs.readFileSync(this.file, 'utf8')
+    if(this.options.file === undefined) throw "No File Specified"
+    if(fs.existsSync(this.options.file)) {
+      console.log("Reading DB...")
+      const json = fs.readFileSync(this.options.file, 'utf8')
       this.data = JSON.parse(json)
     }
   }
   write() {
+    if(this.options.file === undefined) throw "No File Specified"
     const json = JSON.stringify(this.data)
-    fs.writeFileSync(this.file, json, 'utf8')
+    fs.writeFileSync(this.options.file, json, 'utf8')
   }
 }

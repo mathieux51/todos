@@ -9,7 +9,7 @@ body {
   margin: 0 auto;
   width: 60%; }
 
-h1 {
+h1, h2 {
   text-align: center;
   color: white;
   background: #1370A3;
