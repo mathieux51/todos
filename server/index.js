@@ -21,7 +21,7 @@ var app = express()
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
-}));
+}))
 app.use(morgan('dev'))
 app.use(require('connect-livereload')());
 app.use(express.static('public'))
@@ -49,22 +49,22 @@ app.get('/todos.json', function(req, res) {
 
 // Bootup Server
 var server = app.listen(3000, () => {
-  console.log("Listening on port 3000")
+  console.log('Listening on port 3000')
   setTimeout(reload, 3000)
 })
 
 // Bootup WebSocketServer (Link it to Http Server)
 const wss = new WebSocketServer({ server: server })
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message)
+wss.on('connection', (ws) => {
+  ws.on('message', (message) => {
+    console.log(`received: ${message}`)
   })
   ws.send('something');
 })
 
 // Handle shutdown from nodemon
-process.once('SIGUSR2', function () {
-  console.log("Writing database...")
+process.once('SIGUSR2', () => {
+  console.log('Writing database...')
   close()
   server.close()
   db.write()
@@ -72,8 +72,8 @@ process.once('SIGUSR2', function () {
 })
 
 // Handle shutdown from ctrl-c
-process.on('SIGINT', function() {
-  console.log("Writing database...")
+process.on('SIGINT', () => {
+  console.log('Writing database...')
   db.write()
   process.exit()
 })
