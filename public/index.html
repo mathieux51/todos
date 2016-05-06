@@ -2,14 +2,20 @@
 <head>
   <title>Mathieu's Todos</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" src="index.js"></script>
 </head>
 <html>
 <body>
+  <h1>Hello Vue.js!</h1>
+  <div id="root">
+    <p>{{ message }}</p>
+    <input type="text" v-model="message" />
+    <ul>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ul>
+  </div>
 
-<h1>This is a sample static file!!!</h1>
-
-<p>Please visit the /todos link to work on the app!</p>
-
+  <script type="text/javascript" src="index.js"></script>
 </body>
 </html>

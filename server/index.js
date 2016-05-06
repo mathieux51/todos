@@ -22,6 +22,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
 }))
+// NOTE: We need a callback when the webpack is rebuilt.
+// Webpack does not reqrite the bundel file by default.
+
 app.use(morgan('dev'))
 app.use(require('connect-livereload')());
 app.use(express.static('public'))

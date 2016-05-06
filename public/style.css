@@ -8,7 +8,7 @@ body {
 
 h1, h2, ul, input {
   margin-bottom: 16px;
-  box-shadow: inset 0px 0px 8px 0px #F9D034;
+  box-shadow: inset 0px 0px 8px 0px #FCD24D;
   border-radius: 10px;
   text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4); }
 
@@ -17,8 +17,8 @@ body {
 
 body {
   color: #777;
-  color: #F9D034;
-  background: #222;
+  color: #FCD24D;
+  background: #2888E2;
   margin: 0 auto;
   width: 60%; }
 
@@ -27,7 +27,7 @@ h1, h2 {
   color: white;
   color: black;
   background: #1370A3;
-  background: #F9D034;
+  background: #FCD24D;
   border-radius: 5px;
   padding: 8px; }
 
@@ -37,20 +37,21 @@ h2 {
 ul {
   padding-left: 0px;
   border-radius: 5px;
-  background: #F9D034;
-  color: #222; }
+  background: #FCD24D;
+  color: #2888E2;
+  color: black; }
   ul li {
     padding: 14px;
     list-style-type: none;
     display: block; }
   ul li + li {
-    border-top: 1px solid #222; }
+    border-top: 1px solid #2888E2; }
 
 input {
-  border: 3px solid #F9D034;
+  border: 3px solid #FCD24D;
   border-radius: 5px;
-  background: #222;
-  color: #F9D034;
+  background: #2888E2;
+  color: #FCD24D;
   font-size: 16px;
   font-weight: bold;
   padding: 15px; }
@@ -58,11 +59,12 @@ input {
     background: #555;
     outline: none; }
   input[type=text] {
-    width: 80%; }
+    width: 70%;
+    margin-right: 0px; }
   input[type=submit] {
-    width: 13%;
+    width: 20%;
     float: right;
-    background: #F9D034;
+    background: #FCD24D;
     color: black;
     font-weight: bold;
     text-transform: uppercase; }

@@ -11,3 +11,5 @@ export default new class {
     return this._config.name
   }
 }
+
+console.log("Hello")

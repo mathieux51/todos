@@ -1,8 +1,8 @@
 @import 'font';
 
 $radius: 5px;
-$fg-color: #F9D034;
-$bg-color: #222;
+$fg-color: #FCD24D;
+$bg-color: #2888E2;
 $bg-color-focus: #555;
 
 * {
@@ -46,6 +46,7 @@ ul {
   border-radius: $radius;
   background: $fg-color;
   color: $bg-color;
+  color: black;
   li {
     padding: 14px;
     list-style-type: none;
@@ -71,10 +72,11 @@ input {
     outline: none;
   };
   &[type=text] {
-    width: 80%;
+    width: 70%;
+    margin-right: 0px;
   }
   &[type=submit] {
-    width: 13%;
+    width: 20%;
     float: right;
     background: $fg-color;
     color: black;

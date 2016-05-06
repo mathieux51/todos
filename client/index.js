@@ -10,3 +10,17 @@ socket.onopen = function(event) {
 	}
 	//socket.close()
 }
+
+import Vue from 'vue'
+
+const vm = new Vue({
+  el: '#root',
+  data: {
+    message: "Hello world!",
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn JavaScript' },
+      { text: 'Build Something Awesome' }
+    ]}
+})
+

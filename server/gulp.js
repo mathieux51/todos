@@ -17,12 +17,17 @@ gulp.task('sass', () => {
   .pipe(gulp.dest('./public'))
   .pipe(livereload())
 })
+
 gulp.task('js', () => {
   gulp.src('./client/**/*.js')
   .pipe(babel()).on('error', onError)
   .pipe(gulp.dest('./public'))
   .pipe(livereload())
 })
+// NOTE: This is terrible. It's making webpack reload
+// But for the wrong reasons: Coping the raw file triggers the reload
+// And this is not synced and has not relation to webpack...!
+
 gulp.task('html', () => {
   gulp.src('./client/**/*.html')
   .pipe(gulp.dest('./public'))
@@ -34,6 +39,9 @@ gulp.task('watch', () => {
   gulp.watch(['client/**/*.scss'], ['sass'])
   gulp.watch(['client/**/*.js'], ['js'])
   gulp.watch(['server/views/*.html'], _ => livereload.reload())
+  // gulp.watch(['public/**/*.js'], () => {
+  //   livereload.reload()
+  // })
   gulp.watch(['db.json'], () => {
     db.read()
     livereload.reload()
